@@ -2,7 +2,7 @@
 
 Tile::Tile()
 {
-
+	
 }
 
 Tile::~Tile()
@@ -12,6 +12,7 @@ Tile::~Tile()
 
 void Tile::Init(float posX, float posY, float width, float height, tileType type)
 {
+
 	m_rect.pos.x = posX;
 	m_rect.pos.y = posY;
 	m_rect.size.w = width;
@@ -24,7 +25,7 @@ void Tile::Init(float posX, float posY, float width, float height, tileType type
 		m_colour = { 0, 0, 0, 255 };
 		break;
 	case tileType::TILE:
-		m_colour = { 100, 100, 200, 255 };
+		m_colour = { 0, 0, 0, 255 };
 		break;
 	}
 }

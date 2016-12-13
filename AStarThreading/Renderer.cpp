@@ -76,6 +76,9 @@ void Renderer::drawWorldFillRect(const Rect &r, const Colour &c) const {
 
 // Draw a rectin world coordinates
 void Renderer::drawWorldRect(const Rect &r, const Colour &c) const {
+
+
+	
 	drawRect(worldToScreen(r), c);
 }
 

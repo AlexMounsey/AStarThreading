@@ -17,11 +17,11 @@ bool Game::Init(int xpos, int ypos, int width, int height)
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	Size2D winSize(800, 600);
+	Size2D winSize(800, 800);
 	m_walls = 3;
 
 	//tile width of view port
-	float vpWidth = 20;
+	float vpWidth = 10;
 
 	//renderer init
 	m_rend.init(winSize, "Astar Threading");
@@ -37,32 +37,9 @@ bool Game::Init(int xpos, int ypos, int width, int height)
 
 	m_running = true;
 
-	float sizeX = vpSize.w / vpWidth;
-	float sizeY = vpSize.h / vpWidth;
 
+	m_grid.init(static_cast<int>(vpWidth), vpSize);
 
-
-	for (int row = 0; row < vpWidth; row++)
-	{
-		for (int col = 0; col < vpWidth; col++)
-		{
-			// Setup Floor
-			Tile temp;
-			if (col >= 3 && col < vpWidth - 3 && row == (vpWidth / m_walls))
-			{
-				temp.Init((sizeX * row), (sizeY * col), sizeX, sizeY, tileType::WALL);
-			}
-			else
-			{
-				temp.Init((sizeX * row), (sizeY * col), sizeX, sizeY, tileType::TILE);
-				if ((row + col) % 2 == 0)
-				{
-					temp.setColour(Colour(100, 100, 100));
-				}
-			}
-			m_tileList.push_back(temp);
-		}
-	}
 	return true;
 }
 void Game::Update()
@@ -80,8 +57,11 @@ bool Game::IsRunning()
 }
 void Game::Render()
 {
+	
 	m_rend.clear(Colour(0, 0, 0));
+	m_grid.render(&m_rend);
 	m_rend.present();
 }
+
 
 

@@ -124,6 +124,7 @@
     <ClInclude Include="BasicType.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Tile.h" />
@@ -132,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="AStarThreading.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
