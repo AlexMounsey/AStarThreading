@@ -17,12 +17,16 @@ bool Game::Init()
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	Size2D winSize(800, 800);
+	Size2D winSize(600, 600);
 	m_walls = 3;
+
+	
+
 
 	//tile width of view port
 	float vpWidth = 100;
-
+	m_start = std::pair<int, int>(1, 1);
+	m_end = std::pair<int, int>(vpWidth-1, vpWidth-1);
 	//renderer init
 	m_rend.init(winSize, "Astar Threading");
 
@@ -38,12 +42,17 @@ bool Game::Init()
 	m_running = true;
 
 
-	m_grid.init(static_cast<int>(vpWidth), vpSize);
+	m_grid.init(static_cast<int>(vpWidth), vpSize,m_start, m_end);
 
 	return true;
 }
 void Game::Update()
 {
+	m_grid.Update();
+	while (m_grid.getCurrent() != m_grid.getEnd())
+	{
+		m_grid.RunaStar();
+	}
 }
 void Game::Load()
 {

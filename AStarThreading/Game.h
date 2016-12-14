@@ -30,5 +30,7 @@ private:
 	bool m_running;
 	Renderer m_rend;
 	Grid m_grid;
+	std::pair<int, int> m_start;
+	std::pair<int, int> m_end;
 };
 #endif

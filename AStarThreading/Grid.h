@@ -23,11 +23,12 @@ private:
 	std::pair<int, int> m_end;
 	std::pair<int, int> m_current;
 	std::pair<int, int> m_previous;
+	std::pair<int, int> m_size;
 
 public:
 	//grid stuff
 	Grid();
-	void init(int,Size2D);
+	void init(int numTiles, Size2D winSize, std::pair<int, int> start, std::pair<int, int> end);
 	~Grid();
 	void Update();
 	void render(Renderer* render);
@@ -38,7 +39,25 @@ public:
 	bool checkList(std::vector<std::pair<int, int>> list, std::pair<int, int> check);
 	bool isFree(std::pair<int, int> check);
 	void checkNeighbours(std::pair<int, int> check);
+	bool isOpen(Tile);
 
 
+	std::pair<int, int> getCurrent();
+	void setCurrent(std::pair<int, int>);
+	void setCurrent(int, int);
+
+	std::vector<std::pair<int, int>> getClosed();
+
+	void setClose(std::pair<int, int> close);
+
+	void setClose(int x, int y);
+
+	std::pair<int, int> getStart();
+	void setStart(std::pair<int, int>);
+	void setStart(int, int);
+
+	std::pair<int, int> getEnd();
+	void setEnd(std::pair<int, int>);
+	void setEnd(int, int);
 
 };
