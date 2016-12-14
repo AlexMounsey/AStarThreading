@@ -44,6 +44,10 @@ void Tile::setColour(Colour val)
 {
 	m_colour = val;
 }
+void Tile::costOfTile(std::pair<int, int>, std::pair<int, int>)
+{
+
+}
 Point2D Tile::getPosition() const
 {
 	return Point2D(m_rect.pos.x, m_rect.pos.y);

@@ -3,6 +3,8 @@
 #include "TileType.h"
 #include "BasicType.h"
 #include "Renderer.h"
+#include <vector>
+#include <queue>
 
 class Tile
 {
@@ -27,4 +29,7 @@ public:
 	tileType getType() const;
 	void setType(tileType val);
 	void setColour(Colour val);
+	void costOfTile(std::pair<int, int>, std::pair<int, int>);
+
+	
 };

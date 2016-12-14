@@ -37,7 +37,7 @@ public:
 	void RunaStar();
 	bool checkList(std::vector<std::pair<int, int>> list, std::pair<int, int> check);
 	bool isFree(std::pair<int, int> check);
-	void checkNeighbours(std::pair<int, int> index);
+	void checkNeighbours(std::pair<int, int> check);
 
 
 
