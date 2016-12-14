@@ -13,7 +13,7 @@ Game::~Game()
 {
 }
 
-bool Game::Init(int xpos, int ypos, int width, int height)
+bool Game::Init()
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
@@ -21,7 +21,7 @@ bool Game::Init(int xpos, int ypos, int width, int height)
 	m_walls = 3;
 
 	//tile width of view port
-	float vpWidth = 10;
+	float vpWidth = 100;
 
 	//renderer init
 	m_rend.init(winSize, "Astar Threading");

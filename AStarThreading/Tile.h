@@ -11,6 +11,10 @@ private:
 	Rect m_rect;
 	Colour m_colour;
 	tileType m_type;
+	int g; 
+	int h;
+	//g + h =f
+
 
 public:
 	Tile();

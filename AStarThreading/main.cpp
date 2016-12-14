@@ -14,7 +14,7 @@ int main()
 	Game* game = new Game();
 
 	//Adjust screen positions as needed
-	game->Init(300, 100, 800, 600);
+	game->Init();
 
 	while (game->IsRunning())
 	{

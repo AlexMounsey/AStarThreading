@@ -21,12 +21,11 @@ public:
 
 	void Load();
 
-	bool Init(int xpos, int ypos, int width, int height);
+	bool Init();
 
 	void Update();
 
 private:
-	const int m_gridSize = 10;
 	int m_walls;
 	bool m_running;
 	Renderer m_rend;

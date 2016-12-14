@@ -6,6 +6,7 @@ Grid::Grid()
 }
 void Grid::init(int numTiles, Size2D winSize)
 {
+	m_gridSize = numTiles;
 	float sizeX = winSize.w / numTiles;
 	float sizeY = winSize.h / numTiles;
 	for (int row = 0; row < numTiles; row++)
@@ -33,6 +34,7 @@ Grid::~Grid()
 
 void Grid::Update()
 {
+
 }
 void Grid::render(Renderer* render)
 {
@@ -41,3 +43,30 @@ void Grid::render(Renderer* render)
 		m_tileList[i].render(render);
 	}
 }
+
+
+bool Grid::checkList(std::vector<std::pair<int, int>> list, std::pair<int, int> check)
+{
+	return std::find(list.begin(), list.end(), check) != list.end();
+}
+bool Grid::isFree(std::pair<int, int> check)
+{
+	if (checkList(m_closed, check))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+void Grid::checkNeighbours(std::pair<int, int> index)
+{
+	
+}
+void Grid::RunaStar()
+{
+
+}
+
