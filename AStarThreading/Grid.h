@@ -26,6 +26,8 @@ private:
 	std::pair<int, int> m_previous;
 	std::pair<int, int> m_size;
 
+	SDL_mutex *mutex;
+
 public:
 	//grid stuff
 	Grid();
@@ -37,6 +39,7 @@ public:
 
 	//astar
 	void RunaStar();
+	SDL_mutex * getMutex();
 	bool checkList(std::vector<std::pair<int, int>> list, std::pair<int, int> check);
 	bool isFree(std::pair<int, int> check);
 	void checkNeighbours(std::pair<int, int> check);
@@ -60,5 +63,6 @@ public:
 	std::pair<int, int> getEnd();
 	void setEnd(std::pair<int, int>);
 	void setEnd(int, int);
+
 
 };

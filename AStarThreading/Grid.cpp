@@ -6,6 +6,7 @@ Grid::Grid()
 }
 void Grid::init(int numTiles, Size2D winSize, std::pair<int, int> start, std::pair<int, int> end)
 {
+	mutex = SDL_CreateMutex(); 
 	m_gridSize = numTiles;
 	float sizeX = winSize.w / m_gridSize;
 	float sizeY = winSize.h / m_gridSize;
@@ -58,14 +59,16 @@ void Grid::render(Renderer* render)
 	{
 		m_tileList[i].render(render);
 	}
+	if (SDL_LockMutex(mutex) == 0)
+	{
+		Tile temp(0, 0);
+		temp.Init(m_start.first, m_start.second, m_size.first, m_size.second, tileType::START);
+		temp.render(render);
 
-	Tile temp(0, 0);
-	temp.Init(m_start.first, m_start.second, m_size.first, m_size.second, tileType::START);
-	temp.render(render);
-
-	Tile temp2(0, 0);
-	temp.Init(m_end.first, m_end.second, m_size.first, m_size.second, tileType::END);
-	temp.render(render);
+		Tile temp2(0, 0);
+		temp.Init(m_end.first, m_end.second, m_size.first, m_size.second, tileType::END);
+		temp.render(render);
+	}
 }
 
 
@@ -196,5 +199,9 @@ void Grid::RunaStar()
 
 
 
+}
+SDL_mutex* Grid::getMutex()
+{
+	return mutex;
 }
 
