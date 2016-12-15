@@ -5,6 +5,7 @@
 #include "BasicType.h"
 #include <vector>
 #include <queue>
+#include <SDL_thread.h>
 
 
 

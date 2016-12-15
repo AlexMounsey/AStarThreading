@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include <vector>
 #include "Grid.h"
+#include <SDL_thread.h>
 
 class Game
 {

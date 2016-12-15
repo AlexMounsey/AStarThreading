@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 Game::Game() :m_running(false)
 {
 }
@@ -44,15 +46,18 @@ bool Game::Init()
 
 	m_grid.init(static_cast<int>(vpWidth), vpSize,m_start, m_end);
 
+	int data = NULL;
+	SDL_Thread* thread = SDL_CreateThread(threadFunction, "grinf", &m_grid);
+
+
+	SDL_DetachThread(thread);
+
 	return true;
 }
 void Game::Update()
 {
 	m_grid.Update();
-	while (m_grid.getCurrent() != m_grid.getEnd())
-	{
-		m_grid.RunaStar();
-	}
+
 }
 void Game::Load()
 {
@@ -73,4 +78,15 @@ void Game::Render()
 }
 
 
+int threadFunction(void* data)
+{
+	Grid *g = (Grid*)data;
+
+	while (g->getCurrent() != g->getEnd())
+	{
+		g->RunaStar();
+	}
+
+	return 0;
+}
 
