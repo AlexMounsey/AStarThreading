@@ -38,7 +38,7 @@ public:
 
 
 	//astar
-	void RunaStar();
+	static int RunaStar(void * data );
 	SDL_mutex * getMutex();
 	bool checkList(std::vector<std::pair<int, int>> list, std::pair<int, int> check);
 	bool isFree(std::pair<int, int> check);

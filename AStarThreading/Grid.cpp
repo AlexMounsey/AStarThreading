@@ -55,12 +55,16 @@ void Grid::Update()
 }
 void Grid::render(Renderer* render)
 {
-	for (size_t i = 0; i < m_tileList.size(); i++)
-	{
-		m_tileList[i].render(render);
-	}
 	if (SDL_LockMutex(mutex) == 0)
 	{
+
+		for (size_t i = 0; i < m_tileList.size(); i++)
+		{
+			m_tileList[i].render(render);
+		}
+		SDL_UnlockMutex(mutex);
+	}
+
 		Tile temp(0, 0);
 		temp.Init(m_start.first, m_start.second, m_size.first, m_size.second, tileType::START);
 		temp.render(render);
@@ -68,7 +72,6 @@ void Grid::render(Renderer* render)
 		Tile temp2(0, 0);
 		temp.Init(m_end.first, m_end.second, m_size.first, m_size.second, tileType::END);
 		temp.render(render);
-	}
 }
 
 
@@ -186,17 +189,26 @@ void Grid::setEnd(int x, int y)
 	m_end.first = x;
 	m_end.second = y;
 }
-void Grid::RunaStar()
+int Grid::RunaStar(void * data)
 {
+	auto grid = static_cast<Grid*>(data);
+	std::vector<Tile> tiles = grid->m_tileList;
+	if (SDL_LockMutex(grid->mutex) == 0)
+	{
 
-	checkNeighbours(m_current);
+		//this is critical section, doesn't do anything but is critial
+		tiles.erase(tiles.end() - 5, tiles.end());
+		SDL_UnlockMutex(grid->mutex);
+
+	}
+	//checkNeighbours(m_current);
 
 
-	m_previous = m_current; 
-	Tile temp = searchOrder.top();
-	searchOrder.pop(); 
-	m_current = temp.getPosition();
-
+	//m_previous = m_current; 
+	//Tile temp = searchOrder.top();
+	//searchOrder.pop(); 
+	//m_current = temp.getPosition();
+	return 0;
 
 
 }

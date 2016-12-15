@@ -4,17 +4,7 @@
 
 
 using namespace std;
-int threadFunction(void* data)
-{
-	Grid *g = (Grid*)data;
 
-	while (g->getCurrent() != g->getEnd())
-	{
-		g->RunaStar();
-	}
-
-	return 0;
-}
 
 
 
@@ -58,7 +48,7 @@ bool Game::Init()
 	m_grid.init(static_cast<int>(vpWidth), vpSize,m_start, m_end);
 
 	int data = NULL;
-	SDL_Thread* thread = SDL_CreateThread(threadFunction, "Grod", &m_grid);
+	SDL_Thread* thread = SDL_CreateThread(Grid::RunaStar, "Grod", &m_grid);
 
 
 	SDL_DetachThread(thread);
@@ -82,14 +72,11 @@ bool Game::IsRunning()
 }
 void Game::Render()
 {
-	if (SDL_LockMutex(m_grid.getMutex()) == 0)
-	{
+
 		m_rend.clear(Colour(0, 0, 0));
 		m_grid.render(&m_rend);
 		m_rend.present();
-		SDL_UnlockMutex(m_grid.getMutex());
 	
-	}
 }
 
 
